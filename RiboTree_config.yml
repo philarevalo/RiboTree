@@ -2,7 +2,7 @@ result_file_prefix:
     #Prefix for output files to uniquely identify related outputs. Please
     #keep the prefix short and avoid using special characters such as periods
     #or commas.
-    "Ribo_test_pcc"
+    "example_prefix"
 script_location:
     #Path to directory containing scripts. Can be an absolute or
     #relative path. Please make sure the path ends in a /
@@ -26,7 +26,7 @@ contig_extension:
     "_contigs.fasta"
 output_directory:
     #Directory for pipeline outputs. Will be created if it does not already exist
-    "pcc/outputs/"
+    "example/outputs/"
 raxml_params: 
     #Parameters for RaxML. See RaxML documentation for more information.
     "-f a -x 26789416 -m GTRGAMMAX -p 218957 -# 2"
