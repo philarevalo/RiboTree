@@ -1,0 +1,36 @@
+result_file_prefix:
+    #Prefix for output files to uniquely identify related outputs. Please
+    #keep the prefix short and avoid using special characters such as periods
+    #or commas.
+    "Ribo_test_pcc"
+script_location:
+    #Path to directory containing scripts. Can be an absolute or
+    #relative path. Please make sure the path ends in a /
+    "scripts/"
+ribo_hmm_file:
+    #Path to ribosomal hmm file
+    "hmmfiles/Yutin_Ribosomal_Proteins.hmm"
+contig_directory:
+    #Path to directory containing contigs
+    "pcc/contigs/"
+contig_extension:
+    #Extension for genome files. NOTE THAT THIS PIPELINE EXPECTS ALL GENOME FILES TO FOLLOW 
+    #THE SAME NAMING CONVENTION:
+    #
+    #    {strain name}_{extension}
+    #
+    #For example, if we have two strains (FF50 and 9C6106) that we would like to
+    #include in this pipeline, then the following are acceptable examples of filenames:
+    #FF50.fasta, 9CS106.fasta (Extension in this case is .fasta)
+    #FF50_contigs.fasta, 9CS106_contigs.fasta (Extension in this case is _contigs.fasta)
+    "_contigs.fasta"
+output_directory:
+    #Directory for pipeline outputs. Will be created if it does not already exist
+    "pcc/outputs/"
+raxml_params: 
+    #Parameters for RaxML. See RaxML documentation for more information.
+    "-f a -x 26789416 -m GTRGAMMAX -p 218957 -# 2"
+min_col_frac:
+    #Parameter that determines how to filter the final alignment. If min_col_frac = 0.5,
+    #Then any alignment columns that contain > 50% gaps will be eliminated. 
+    "0.5"

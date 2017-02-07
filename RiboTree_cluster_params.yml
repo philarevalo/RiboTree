@@ -1,0 +1,22 @@
+__default__:
+    nodes: 1
+    cores: 1
+    partition: "newnodes"
+    mem: 2000
+
+run_raxml:
+#Cluster parameters for running raxml (computationally intensive).
+#Try parameters that work best for you, but note that in its current implementation
+#RiboTree does not make use of raxml's capability of using multiple cores. The code
+#can be modified to do this, but requires system-specific compilation.
+    nodes: 1
+    cores: 4
+    partition: "newnodes"
+    mem: 8000
+
+hmmsearch:
+#Cluster parameters for hmmsearch. Somehwat memory-intensive.
+    nodes: 1
+    cores: 2
+    partition: "newnodes"
+    mem: 4000
