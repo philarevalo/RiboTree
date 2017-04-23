@@ -17,12 +17,17 @@ It also expects that all genome filenames follow the same formatting
 """
 import glob
 from Bio import SeqIO
+import os
 
 configfile:
     "RiboTree_config.yml"
 
 contig_wildcard_string = config["contig_directory"] + "/*" + config["contig_extension"]
-strains = [f.split('/')[-1].split('_')[0] for f in glob.glob(contig_wildcard_string)]
+os.system('cp {infile} {outfile}'.format(
+    infile = config['outgroup_genome'], 
+    outfile = config["contig_directory"] + '/outgroup_genome' + config['contig_extension']))
+strains = ['.'.join(f.split('/')[-1].split('.')[0:-1]) for f in glob.glob(contig_wildcard_string)]
+
 
 rule target:
     input:
@@ -70,13 +75,14 @@ rule reformat_contigs:
     #This chunk of code insures that sequence names in genome files
     #follow the correct format.
     input:
-        genome_file = config["contig_directory"] + "/{strain}" + config['contig_extension']
+        genome_file = config["contig_directory"] + "/{strain}" + config['contig_extension'],
     output:
         output_file = config["contig_directory"] + "/{strain}" + config["contig_extension"] + ".reformatted"
     run:
         new_s = []
-        strain = input["genome_file"].split('/')[-1].split('_')[0]
+        strain = '.'.join(input["genome_file"].split('/')[-1].split('.')[0:-1])
         for i, s in enumerate(SeqIO.parse(input["genome_file"], 'fasta')):
-            s.id = strain + '_' + str(i)
-            new_s.append(s)
+            if len(s) > 0:
+                s.id = strain + '_' + str(i)
+                new_s.append(s)
         SeqIO.write(new_s, output["output_file"], 'fasta')

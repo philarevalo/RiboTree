@@ -17,7 +17,7 @@ all_strains = []
 with open(config["output_directory"] + "/hmmer_out/" + config["result_file_prefix"] + "_singletons.txt", 'r') as infile: 
     for line in infile:
         prot = line.split()[2]
-        strain = line.split()[0].split('_')[0]
+        strain = '_'.join(line.split()[0].split('_')[0:-2])
         all_strains.append(strain)
         all_prots.append(prot)
 prot_counts = Counter(all_prots)

@@ -28,13 +28,13 @@ def main():
                 prot_name = line.split()[0]
                 ribo_prot = line.split()[2]
                 hmm_dict[ribo_prot].append(seq_dict[prot_name])
-    all_strains = [s.id.split('_')[0] for prot, seqlist in hmm_dict.items() for s in seqlist]
+    all_strains = ['_'.join(s.id.split('_')[0:-2]) for prot, seqlist in hmm_dict.items() for s in seqlist]
     num_strains = len(set(all_strains))
     for prot, seqlist in hmm_dict.items():
         outname = outpath + prot + '_unaligned.fasta'
         final_seqlist = []
         for s in seqlist:
-            strain = s.id.split('_')[0]
+            strain = '_'.join(s.id.split('_')[0:-2])
             s.id = strain
             final_seqlist.append(s)
         if len(final_seqlist) > 0.5 * num_strains:

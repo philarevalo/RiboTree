@@ -1,8 +1,8 @@
 __default__:
     nodes: 1
     cores: 1
-    partition: "newnodes"
-    mem: 2000
+    partition: "[insert partition names here]"
+    mem: 16000
 
 run_raxml:
 #Cluster parameters for running raxml (computationally intensive).
@@ -11,12 +11,12 @@ run_raxml:
 #can be modified to do this, but requires system-specific compilation.
     nodes: 1
     cores: 4
-    partition: "newnodes"
-    mem: 8000
+    partition: "[insert partition names here]"
+    mem: 16000
 
 hmmsearch:
 #Cluster parameters for hmmsearch. Somehwat memory-intensive.
     nodes: 1
     cores: 2
-    partition: "newnodes"
-    mem: 4000
+    partition: "[insert partition names here]"
+    mem: 16000

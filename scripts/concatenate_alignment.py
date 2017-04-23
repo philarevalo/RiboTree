@@ -27,14 +27,14 @@ def main():
     num = 0
 
     for files in filelist:
-        strains = [seqs.id.split('_')[0] for seqs in SeqIO.parse(files, 'fasta')]
+        strains = [seqs.id for seqs in SeqIO.parse(files, 'fasta')]
         all_strains += strains
     all_strains = set(all_strains)    
 
     for files in filelist:
         prot_strains = []
         for seqs in SeqIO.parse(files, 'fasta'):
-            taxon = seqs.id.split('_')[0]
+            taxon = seqs.id 
             prot_strains.append(taxon)
             sequence_dict[taxon] += str(seqs.seq)
             ali_length = len(seqs)
@@ -44,28 +44,33 @@ def main():
 
     for name, sequence in sequence_dict.items():
         seq = Seq(sequence)
+        print(len(seq))
         temp_record = SeqRecord(seq, id = name, description='')
         final_seqs.append(temp_record)
 
     SeqIO.write(final_seqs, out_name, 'fasta')
 
     columns_to_filter = []
+
     aln = AlignIO.read(out_name, 'fasta')
     for x in range(0, len(aln[0])):
         col = aln[ : , x]
         if col.count('-') >= min_frac * len(col):
             columns_to_filter.append(x)
-    new_align = aln[:, 0 : 0]
+    if len(columns_to_filter) > 0:
+        new_align = aln[:, 0 : 0]
 
-    for i, col in enumerate(sorted(columns_to_filter)):
-        if i == 0:
-            begin = 0
-            new_align += aln[:, begin : col]
-        elif i != len(columns_to_filter) - 1:
-            begin = columns_to_filter[i - 1] + 1
-            new_align += aln[:, begin : col]
-        else:
-            new_align += aln[:, col + 1 : ]
+        for i, col in enumerate(sorted(columns_to_filter)):
+            if i == 0:
+                begin = 0
+                new_align += aln[:, begin : col]
+            elif i != len(columns_to_filter) - 1:
+                begin = columns_to_filter[i - 1] + 1
+                new_align += aln[:, begin : col]
+            else:
+                new_align += aln[:, col + 1 : ]
+    else:
+        new_align = aln
         
     AlignIO.write(new_align, out_name, 'fasta')
     

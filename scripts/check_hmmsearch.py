@@ -67,7 +67,7 @@ def find_paralogs(in_hmm, singleton_out):# , paralog_out):
         for line in infile:
             if line[0] != '#':
                 prot_name = line.split()[0]
-                strain = prot_name.split('_')[0]
+                strain = '_'.join(prot_name.split('_')[0:-2])
                 ribo_prot = line.split()[2]
                 para_dict[(strain, ribo_prot)].append(line)
 
