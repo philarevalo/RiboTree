@@ -20,4 +20,4 @@ After installing miniconda:
 
 ##Notes
 
-Not tested on Windows or OSX machines. I suspect that at present the code will break in windows due to the use of `\` as opposed to `/` in filepaths on Windows systems. May work in OSX.
+Not tested on Windows or OSX machines. I suspect that at present the code will break in windows due to the use of `\` as opposed to `/` in filepaths on Windows systems. May work in OSX. Test.
