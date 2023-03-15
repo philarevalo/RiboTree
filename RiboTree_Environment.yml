@@ -9,4 +9,5 @@ dependencies:
 - biopython=1.67
 - python=3.5
 - raxml=8.2.9
+- prodigal
 
