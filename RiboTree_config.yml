@@ -2,11 +2,11 @@ result_file_prefix:
     #Prefix for output files to uniquely identify related outputs. Please
     #keep the prefix short and avoid using special characters such as periods
     #or commas.
-    "pcc"
+    "breotest"
 
 contig_directory:
     #Path to directory containing contigs
-    "/home/parevalo/scratch/genomes_for_clustering/inputs/Pcc/clean/"
+    "/Users/parevalo/RiboTree/test-genomes/"
 contig_extension:
     #Extension for genome files. NOTE THAT THIS PIPELINE EXPECTS ALL GENOME FILES TO FOLLOW 
     #THE SAME NAMING CONVENTION:
@@ -24,7 +24,7 @@ output_directory:
 outgroup_genome:
     #Path to outgroup genome
     #"/home/parevalo/scratch/genomes_for_clustering/inputs/Vib/clean/9CS106_contigs_for_pipeline.fa"
-    "/home/parevalo/scratch/genomes_for_clustering/inputs/pseudomonas/clean/GCF_001063795.1_ASM106379v1_genomic.fna"
+    "/Users/parevalo/RiboTree/test-outgroup/pseudo_PAO1.fasta"
 script_location:
     #Path to directory containing scripts. Can be an absolute or
     #relative path. Please make sure the path ends in a /
